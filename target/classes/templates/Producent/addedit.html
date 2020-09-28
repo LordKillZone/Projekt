@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Producent forma</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--/*@thymesVar id="producent" type="com.example.modulv.commands.ProducentCommand"*/-->
+<!--/*@thymesVar id="auto" type="com.example.modulv.model.Auto"*/-->
+<!--/*@thymesVar id="dystrybutor" type="com.example.modulv.model.Dystrybutor"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+            <form  th:object="${producent}" th:action="@{/producent/}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title"><span th:text="*{id} != null ? 'Edit ' : 'New '"></span>Producent informacje</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8 form-group">
+                                    <label>Marka:</label>
+                                    <input type="text" class="form-control" th:field="*{marka}"/>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Auto:</label>
+                                    <select class="form-control" th:field="*{autoId}">
+                                        <option th:each="auto : ${auta}" th:text="${auto.model} + ' ' + ${auto.rprod}" th:value="${auto.id}">The Great Artist</option>
+                                        <option th:remove="all">F44 Red Artist</option>
+                                        <option th:remove="all">Que Artes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>Rok produkcji:</label>
+                                    <input type="text" class="form-control" th:field="*{marka}"/>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Paliwo:</label>
+                                    <input type="text" class="form-control" th:field="*{lokalizacja}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>nrstanowiska:</label>
+                                    <input type="text" class="form-control" th:field="*{nrstanowiska}"/>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Dystrybutor:</label>
+                                    <select class="form-control" th:field="*{dystrybutorId}">
+                                        <option th:each="dystrybutor : ${dystrybutor}" th:text="${dystrybutor.lokalizacja}" th:value="${dystrybutor.id}">The Great Publisher</option>
+                                        <option th:remove="all">Piotr</option>
+                                        <option th:remove="all">Pawlik</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Potwierdz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

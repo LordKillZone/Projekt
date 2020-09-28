@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <title>Wszyscy klienci</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Wszyscy klienci</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-inverse">
+                            <th>ID</th>
+                            <th>imie</th>
+                            <th>nazwisko</th>
+                            <th>zadanie</th>
+                            </thead>
+                            <tr th:each="klient : ${klienci}">
+                                <td th:text="${klientStat.index}">152</td>
+                                <td th:text="${klient.imie}">Jan</td>
+                                <td th:text="${klient.nazwisko}">Kowalski</td>
+                                <td>
+                                    <a href="#" th:href="@{'/klient/' + ${klient.id} + '/pokaz'}" style="margin-right: 5px;">Wyswietl</a>
+                                    <a href="#" th:href="@{'/klient/' + ${klient.id} + '/usun'}">Usun <small style="color: #ff4444;"><i>(niebezpieczne)</i></small></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-1">
+                <input onclick='javascript:window.history.back()' value='Back' type='button' class="btn btn-default"/>
+            </div>
+            <div class="col-md-1 col-md-offset-10">
+                <a href="#" th:href="@{'/klient/new'}" role="button" class="btn btn-success">Dodaj</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
